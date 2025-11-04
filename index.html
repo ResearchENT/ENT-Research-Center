@@ -1,0 +1,502 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ENT Research Center</title>
+  <meta name="description" content="ENT Research Center — Integrating Global Expertise with Regional Health Priorities." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1: #051026; /* deep navy */
+      --bg-2: #0b1630; /* dark blue */
+      --glass: rgba(255,255,255,0.08);
+
+      --muted: rgba(230,238,246,0.65);
+      --accent-1: #6c5ce7; /* purple */
+      --accent-2: #36a3ff; /* blue */
+      --card-border: rgba(255,255,255,0.12);
+      --glass-glow: 0 8px 40px rgba(108,92,231,0.15);
+      --glass-glow-hover: 0 20px 60px rgba(108,92,231,0.25);
+      --radius:16px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(108,92,231,0.15), transparent 40%),
+
+                  radial-gradient(1000px 500px at 90% 80%, rgba(54,163,255,0.12), transparent 40%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#eaf2ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px;
+    }
+
+    .wrap{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo {
+      width:64px;height:64px;border-radius:16px;
+
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+      color:white;font-weight:700;font-size:18px;
+      box-shadow:var(--glass-glow);
+      backdrop-filter:blur(20px);
+      border:1px solid var(--card-border);
+    }
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 16px;border-
+
+radius:12px;transition:all 0.3s ease}
+    nav a:hover{color:white;background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;margin-top:24px}
+    .hero .intro h2{margin:0;font-size:32px;background:linear-gradient(135deg, #eaf2ff, #a6c1ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero .intro h3{margin:12px 0 20px;color:var(--muted);font-weight:500;font-size:18px}
+    .hero p.lead{color:var(--muted);margin:0 0 24px;font-size:16px;line-height:1.6}
+    .cta-group{display:flex;gap:14px;flex-wrap:wrap}
+
+    .btn{padding:12px 24px;border-radius:12px;font-weight:700;border:1px solid var(--card-border);background:transparent;color:var(--muted);transition:all 0.3s ease;cursor:pointer;text-decoration:none;display:inline-block}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.2)}
+    .btn.primary{background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:white;box-shadow:0 8px 30px rgba(54,163,255,0.15);border:none}
+    .btn.primary:hover{box-shadow:0 12px 35px rgba(54,163,255,0.25);transform:translateY(-3px) scale(1.02)}
+
+    /* Glass Card Styles */
+    .glass-card{
+
+      background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+      backdrop-filter:blur(20px);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      box-shadow:var(--glass-glow);
+      transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      position:relative;
+      overflow:hidden;
+    }
+    .glass-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity:0;
+      transition:opacity 0.4s ease;
+      border-radius:var(--radius);
+
+    }
+    .glass-card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:var(--glass-glow-hover);
+      border-color:rgba(255,255,255,0.2);
+    }
+    .glass-card:hover::before{
+      opacity:1;
+    }
+
+    .hero-card{background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06)); padding:24px;border-radius:20px;box-shadow:var(--glass-glow);border:1px solid var(--card-border);backdrop-filter:blur(20px)}
+    .hero-visual{height:280px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:linear-
+
+gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));color:var(--muted);text-align:center;padding:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.08)}
+    .hero-visual img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+
+    /* Management & Education */
+    .section{margin-top:48px}
+    .section h4{margin:0 0 12px;font-size:24px;color:#eaf2ff}
+    .section p.desc{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+
+    .team-row{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:24px}
+    .team-card{
+      background:linear-gradient(135deg, 
+
+rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      backdrop-filter:blur(20px);
+      border-radius:18px;
+      padding:24px;
+      border:1px solid var(--card-border);
+      display:flex;
+      gap:16px;
+      align-items:center;
+      transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      position:relative;
+      overflow:hidden;
+      box-shadow:var(--glass-glow);
+    }
+    .team-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(135deg, rgba(108,92,231,0.1), 
+
+rgba(54,163,255,0.05));
+      opacity:0;
+      transition:opacity 0.4s ease;
+      border-radius:18px;
+    }
+    .team-card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:var(--glass-glow-hover);
+      border-color:rgba(255,255,255,0.2);
+    }
+    .team-card:hover::before{
+      opacity:1;
+    }
+    .team-icon{
+      width:72px;height:72px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));border:1px solid rgba(255,255,255,0.15);
+
+      overflow:hidden;
+      flex-shrink:0;
+      backdrop-filter:blur(10px);
+    }
+    .team-icon img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+    .team-meta h5{margin:0;font-size:16px;color:#eaf2ff;font-weight:600}
+    .team-meta p{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.4}
+
+    /* Official Channels - centered flip cards */
+    .channels{
+      margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:20px;
+      padding:32px;border-radius:20px;background:linear-gradient(135deg, rgba(255,255,255,0.08), 
+
+rgba(255,255,255,0.04));
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(20px);
+      box-shadow:var(--glass-glow);
+    }
+    .channels-grid{display:flex;gap:28px;align-items:center;justify-content:center;margin-top:20px}
+    .flip-card{
+      width:280px;height:180px;perspective:1400px;
+    }
+    .flip-inner{
+      position:relative;width:100%;height:100%;transition:transform 0.8s cubic-bezier(0.23,1,0.32,1);
+      transform-style:preserve-3d;border-radius:18px;
+
+      cursor:pointer;
+      box-shadow:var(--glass-glow);
+    }
+    .flip-inner.is-flipped{transform:rotateY(180deg)}
+    .flip-face{
+      position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+      border:1px solid rgba(255,255,255,0.15);
+      background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      backdrop-filter:blur(20px);
+      transition:all 0.4s ease;
+    }
+    .flip-front{
+      background:linear-gradient(135deg, 
+
+rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+      border:1px solid rgba(255,255,255,0.2);
+    }
+    .flip-front:hover{
+      border-color:rgba(255,255,255,0.3);
+      box-shadow:0 15px 40px rgba(108,92,231,0.2);
+    }
+    .flip-back{
+      transform:rotateY(180deg);
+      background:linear-gradient(135deg, rgba(54,163,255,0.15), rgba(108,92,231,0.12));
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    }
+    .flip-back:hover{
+
+      background:linear-gradient(135deg, rgba(54,163,255,0.2), rgba(108,92,231,0.15));
+      box-shadow:0 15px 40px rgba(54,163,255,0.25);
+    }
+    .channel-title{font-weight:700;margin-bottom:8px;font-size:16px;text-align:center}
+    .channel-sub{color:var(--muted);font-size:14px;text-align:center}
+    .tg-icon{
+      width:64px;height:64px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#2b97ff,#1da1f2);
+      box-shadow:0 8px 30px rgba(29,161,242,0.25);
+      transition:all 0.3s ease;
+    }
+
+    .tg-icon:hover{
+      transform:scale(1.1);
+      box-shadow:0 12px 35px rgba(29,161,242,0.35);
+    }
+    .tg-icon img{width:32px;height:32px}
+
+    /* small helper */
+    .muted{color:var(--muted)}
+    footer{margin-top:60px;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; text-align:center;gap:24px}
+      .team-row{grid-template-columns:1fr;gap:20px}
+      .channels-grid{flex-direction:column;gap:20px}
+
+      nav{display:none}
+      .hero-card{margin-top:20px}
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+
+    <header>
+      <div class="brand">
+        <!-- لوگوی شما - فایل logo.png را در همان مسیر قرار دهید -->
+        <img src="logo.png" alt="ENT Research Center logo" class="logo floating">
+        <div>
+          <h1>ENT Research Center</h1>
+          <p>Integrating Global Expertise with Regional Health Priorities.</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#management">Management</a>
+        <a href="#channels">Official Channels</a>
+        <a href="#contact" 
+
+class="btn">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="intro">
+        <h2 id="hero-title">ENT Research Center</h2>
+        <h3>Integrating Global Expertise with Regional Health Priorities.</h3>
+        <p class="lead">
+          As the premier ENT (Ear, Nose, and Throat) research hub in Southeastern Iran,
+          we are dedicated to studying the region's prevalent disorders. Our mission is
+          to develop effective, accessible solutions through scientifically-rigorous and culturally-informed research.
+        </p>
+
+
+        <div class="cta-group">
+          <a class="btn primary" href="#management">Meet the Team</a>
+          <a class="btn" href="#channels">Official Channels</a>
+          <a class="btn" href="#contact">Collaborate</a>
+        </div>
+      </div>
+
+      <div class="hero-card glass-card" aria-hidden="true">
+        <!-- تصویر سمت راست - فایل hero-image.jpg را در همان مسیر قرار دهید -->
+        <div class="hero-visual">
+          <img src="hero-image.jpg" alt="ENT Research Center - Research and Innovation">
+        </div>
+
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center">
+          <div style="text-align:center;width:100%">
+            <!-- فقط Focus areas باقی ماند -->
+            <div class="muted" style="font-size:14px;margin-bottom:8px">Focus areas</div>
+            <div style="font-weight:600;font-size:15px">Clinical research • Training • Collaboration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Management & Education -->
+    <section class="section" id="management" aria-labelledby="management-title">
+
+      <h4 id="management-title">Management &amp; Education</h4>
+      <p class="desc">Leadership and research management team — responsible for scientific supervision, education and research coordination.</p>
+
+      <div class="team-row" role="list">
+        <!-- Card 1 - Founder -->
+        <article class="team-card" role="listitem" aria-label="Founder and Scientific Supervisor">
+          <div class="team-icon" aria-hidden="true">
+            <!-- آیکون Founder - فایل founder-icon.jpg را قرار دهید -->
+            <img src="founder-icon.jpg" alt="Dr. Reza Gharibi">
+          </div>
+          <div class="team-meta">
+            <h5>Founder &amp; Scientific 
+
+Supervisor</h5>
+            <p><strong>Dr. Reza Gharibi</strong><br><span class="muted">Head of ENT Research Center, ZAUMS</span></p>
+          </div>
+        </article>
+
+        <!-- Card 2 - Research Manager -->
+        <article class="team-card" role="listitem" aria-label="Research Manager">
+          <div class="team-icon" aria-hidden="true">
+            <!-- آیکون Manager - فایل manager-icon.jpg را قرار دهید -->
+            <img src="manager-icon.jpg" alt="Dr. Mohammad Behnampour">
+          </div>
+          <div class="team-meta">
+            <h5>Research Manager</h5>
+            <p><strong>Dr. Mohammad 
+
+Behnampour</strong><br><span class="muted">Otolaryngology Resident &amp; Research Manager</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Official Channels -->
+    <section class="section" id="channels" aria-labelledby="channels-title">
+      <div class="channels glass-card" role="region" aria-label="Official channels">
+        <div style="text-align:center">
+          <h4 id="channels-title">Official Channels</h4>
+          <p class="desc">Follow our official Telegram channels for updates and collaborations.</p>
+        </div>
+
+        <div class="channels-grid" role="list">
+          <!-- Channel Card 1 -->
+          <div class="flip-card" role="listitem">
+            <div class="flip-inner glass-card" tabindex="0" data-link="https://t.me/ENT_Research_center" aria-label="ENT Research Center channel">
+              <div class="flip-face flip-front">
+                <!-- لوگوی کارت اول - فایل channel1-logo.png را قرار دهید -->
+                <img src="channel1-logo.png" alt="ENT Research Center Channel" style="width:120px;height:120px;border-radius:15px;margin-bottom:15px;">
+                <div style="text-align:center">
+                  <div class="channel-title">Zahedan ENT Research Center</div>
+                  <div class="channel-sub">ENT_ZAUMS</div>
+                </div>
+              </div>
+
+
+              <div class="flip-face flip-back">
+                <div class="tg-icon" aria-hidden="true">
+                  <!-- لوگوی تلگرام کارت اول - فایل telegram-icon1.png را قرار دهید -->
+                  <img src="telegram-icon1.png" alt="Telegram">
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:700;font-size:15px">Open channel</div>
+                  <div class="muted" style="font-size:13px">Click to open on Telegram</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Channel Card 2 -->
+
+          <div class="flip-card" role="listitem">
+            <div class="flip-inner glass-card" tabindex="0" data-link="https://t.me/OIG_USERN" aria-label="Otolaryngology Interest Group channel">
+              <div class="flip-face flip-front">
+                <!-- لوگوی کارت دوم - فایل channel2-logo.png را قرار دهید -->
+                <img src="channel2-logo.png" alt="Otolaryngology Interest Group" style="width:90px;height:90px;border-radius:5px;margin-bottom:5px;">
+                <div style="text-align:center">
+                  <div class="channel-title">Otolaryngology Interest Group</div>
+                  <div class="channel-sub">OIG</div>
+                </div>
+              </div>
+
+              <div class="flip-face flip-back">
+
+                <div class="tg-icon" aria-hidden="true">
+                  <!-- لوگوی تلگرام کارت دوم - فایل telegram-icon2.png را قرار دهید -->
+                  <img src="telegram-icon2.png" alt="Telegram">
+                </div>
+                <div style="text-align:center">
+                  <div style="font-weight:700;font-size:15px">Open channel</div>
+                  <div class="muted" style="font-size:13px">Click to open on Telegram</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- end channels grid -->
+      </div> <!-- end channels -->
+    </section>
+
+
+    <!-- Contact (simple footer contact form anchor) -->
+    <section id="contact" class="section" style="margin-top:32px">
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+        <p class="muted" style="font-size:15px">For collaboration, training or research inquiries, contact us at:</p>
+        <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center">
+          <div class="muted">📧 info@ent-research-center.ir</div>
+          <div class="muted">📞 +98-54-33219915</div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer>
+      © 2025 ENT Research Center — All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Enhanced flip behavior with smooth animations
+    document.querySelectorAll('.flip-inner').forEach(function(el) {
+      let isFlipped = false;
+      
+      el.addEventListener('click', function(e) {
+        if (!el.classList.contains('is-flipped')) {
+          el.classList.add('is-flipped');
+        } else {
+          const link = el.getAttribute('data-link');
+          if (link) {
+            window.open(link, '_blank');
+
+          }
+        }
+      });
+
+      // Keyboard accessibility
+      el.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          if (!el.classList.contains('is-flipped')) {
+            el.classList.add('is-flipped');
+          } else {
+            const link = el.getAttribute('data-link');
+            if (link) window.open(link, '_blank');
+          }
+        }
+      });
+
+      // Auto-unflip with smooth transition
+      el.addEventListener('transitionend', 
+
+function(ev){
+        if(el.classList.contains('is-flipped')){
+          setTimeout(function(){
+            if(el) el.classList.remove('is-flipped');
+          }, 5000);
+        }
+      });
+    });
+
+    // Improved UX: clicking outside any flip card will unflip all
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.flip-card') && !e.target.closest('.flip-inner')){
+        document.querySelectorAll('.flip-inner.is-flipped').forEach(function(card){
+          card.classList.remove('is-flipped');
+        });
+      }
+    });
+
+
+    // Add hover effects to all glass cards
+    document.querySelectorAll('.glass-card').forEach(function(card) {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
